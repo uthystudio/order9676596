@@ -1,0 +1,15 @@
+<mat-progress-bar *ngIf="dataService.loading" mode="indeterminate"></mat-progress-bar>
+<mat-card *ngIf="!dataService.loading">
+  <mat-card-title>
+    {{area.title}}
+  </mat-card-title>
+  <mat-card-content>
+    <a style="text-decoration: none; user-select: none; color: black"><h3>Города:</h3></a>
+    <a [routerLink]="i" *ngFor="let town of area.sub; let i = index">{{town.title}} ><br></a>
+    <a style="text-decoration: none; user-select: none" [routerLink]="'/add/' + area.id">Добавить город ><br></a>
+  </mat-card-content>
+
+  <button mat-raised-button (click)="goBack()" color="primary">Назад</button>
+
+</mat-card>
+

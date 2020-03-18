@@ -1,0 +1,32 @@
+<mat-progress-bar *ngIf="dataService.loading" color="primary" mode="indeterminate"></mat-progress-bar>
+
+<mat-card>
+  <mat-card-title>
+    {{town.title}}
+  </mat-card-title>
+  <mat-card-content>
+    <p *ngIf="town.info">
+      {{town.info}}
+    </p>
+    <p *ngIf="!town.info">
+      Нет данных о городе
+    </p>
+    <button  mat-raised-button (click)="goBack()" color="primary">Назад</button>
+
+  </mat-card-content>
+</mat-card>
+<div style="margin-top: 20px">
+  <mat-accordion >
+    <mat-expansion-panel *ngFor="let type of types">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{type}} ({{getNumberOfObjects(type, town.obj).length}})
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p *ngIf="getNumberOfObjects(type, town.obj).length === 0">Нет информации. <span [routerLink]="'/add/' + areaid + '/' + townid">Добавить объект?</span></p>
+      <a [routerLink]="i" *ngFor="let object of getNumberOfObjects(type, town.obj); let i = index">{{object.title}} ></a>
+      <a *ngIf="getNumberOfObjects(type, town.obj).length !== 0" [routerLink]="'/add/' + areaid + '/' + townid">Добавить объект ></a>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+</div>

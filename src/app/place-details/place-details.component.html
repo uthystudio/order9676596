@@ -1,0 +1,23 @@
+<mat-progress-bar *ngIf="dataService.loading" color="primary" mode="indeterminate"></mat-progress-bar>
+
+<mat-card>
+  <mat-card-title>{{object.title}}</mat-card-title>
+  <div class="slideshow-container">
+
+    <div class="slideshow-container">
+
+      <div *ngFor="let photo of object.img; let i = index" class="mySlides fade">
+        <div *ngIf="slide === i">
+          <div class="numbertext">{{i + 1}} / {{object.img.length}}</div>
+          <img [src]="photo" style="width:100%">
+        </div>
+      </div>
+
+      <a class="prev" (click)="previousSlide()">&#10094;</a>
+      <a class="next" (click)="nextSlide()">&#10095;</a>
+
+    </div>
+  </div>
+  <p *ngFor="let char of object.char"><b>{{char.title}}: </b>{{char.data}}</p>
+  <button mat-raised-button (click)="goBack()" color="primary">Назад</button>
+</mat-card>

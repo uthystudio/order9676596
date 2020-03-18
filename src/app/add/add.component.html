@@ -1,0 +1,45 @@
+<mat-card>
+  <mat-card-title>Добавить {{type}}</mat-card-title>
+  <mat-card-content *ngIf="type === 'область'">
+    <mat-form-field  >
+      <input matInput placeholder="Название" [(ngModel)]="title">
+    </mat-form-field>
+    <mat-form-field  >
+      <input matInput [(ngModel)]="image" placeholder="URL изображения">
+    </mat-form-field>
+  </mat-card-content>
+  <mat-card-content *ngIf="type === 'город'">
+    <mat-form-field >
+      <input matInput [(ngModel)]="title" placeholder="Название">
+    </mat-form-field>
+    <mat-form-field >
+      <input matInput [(ngModel)]="descr" placeholder="Описание">
+    </mat-form-field>
+  </mat-card-content>
+  <mat-card-content *ngIf="type === 'объект'">
+    <mat-form-field >
+      <input matInput [(ngModel)]="title" placeholder="Название">
+    </mat-form-field>
+    <mat-form-field *ngFor="let img of images">
+      <input matInput disabled [value]="img">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput (keypress)="listenForKey($event)" [(ngModel)]="image" placeholder="URL изображения">
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="images.push(image)">+ Изображение</button>
+    <mat-form-field *ngFor="let ch of char">
+      <input matInput disabled [value]="ch.title">
+    </mat-form-field>
+    <mat-form-field *ngFor="let ch of char">
+      <input matInput disabled [value]="ch.data">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="charTitle" placeholder="Название характеристики">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="charValue" placeholder="Значение характеристики">
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="char.push({title: charTitle, data: charValue})">+ Характеристика</button>
+  </mat-card-content>
+  <button mat-raised-button color="primary" (click)="add()">Добавить</button>
+</mat-card>

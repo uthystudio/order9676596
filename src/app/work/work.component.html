@@ -1,0 +1,11 @@
+<mat-card>
+  <mat-card-title >Вакансии</mat-card-title>
+  <mat-card-content >
+    <mat-card *ngFor="let vacancy of vacancies" style="width: calc(50% - 55px); margin: 10px; display: inline-block">
+      <p><b>{{vacancy.title}}:</b></p>
+      <p style="user-select: text!important;">{{vacancy.descr}}</p>
+      <h3>{{vacancy.price}}</h3>
+    </mat-card>
+
+  </mat-card-content>
+</mat-card>
